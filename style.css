@@ -1,0 +1,17 @@
+
+html {
+  padding: 0 calc((100% - 1024px)/2);
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  width: 1024px;
+  display: flex;
+  flex-flow: column;
+}
+
+.maindiv {
+  border: 2px solid blue;
+}
