@@ -1,3 +1,3 @@
-# Pretty Portfolio
+# Personal Portfolio
 
-Relatively speaking.
+My personal portfolio profile page.
