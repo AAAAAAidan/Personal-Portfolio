@@ -1,87 +1,201 @@
-// TODO
-// - Add projects and videos
-// - Globalize index/next()/prev() usage
-// - Merge global variables into objects or arrays
 
+// Table of Contents
+// 1. Classes
+// 2. Global Vars
+// 3. Functions
+
+/////////////
+// Classes //
+/////////////
+
+// Parent of img and iframe elements
+class File {
+  constructor(id, title, desc) {
+    this.id = id;
+    this.title = title;
+    this.desc = desc;
+  }
+}
+
+// For image file img elements
+class Image extends File {
+  constructor(id, title, desc) {
+    super(id, title, desc);
+  }
+
+  toHTML() {
+    var img = document.createElement("img");
+    img.src = currentPath + this.id;
+    img.alt = "Image file";
+    return img;
+  }
+}
+
+// For embedded video iframe elements
+class Video extends File {
+  constructor(id, title, desc) {
+    super(id, title, desc);
+  }
+
+  toHTML() {
+    var iframe = document.createElement("iframe");
+    iframe.src = this.id;
+    iframe.frameBorder = 0;
+    iframe.allowFullscreen = true;
+    return iframe;
+  }
+}
+
+// For button elements
+class Button {
+  constructor(buttonName, functionName) {
+    this.buttonName = buttonName;
+    this.functionName = functionName;
+  }
+
+  toHTML() {
+    var button = document.createElement("button");
+    button.innerHTML = this.buttonName;
+    button.addEventListener('click', window[this.functionName]);
+    return button;
+  }
+}
+
+
+
+/////////////////
+// Global Vars //
+/////////////////
+
+var currentPath;
+var currentFolder;
+var currentFiles;
+var slideIndex;
+var slideFile;
+var slideTitle;
+var slideDesc;
+
+// Since I'm not using any database connection, all files will be retrieved
+// using this object representing a group of folders, with each folder
+// obtaining a content section's header title and files.
+var folders = {
+  "projects": {
+    header: "Aidan's Log of Projects",
+    files: [
+      new Image("playlists.png", "SiIvaGunner Playlists",
+      "SiIvaGunner related YouTube playlists managed through Google Apps Script."),
+      new Image("sheets.png", "SiIvaGunner Spreadsheets",
+      "Sheets documenting YouTube videos maintained through Google Apps Script."),
+      new Image("siivagunnerdb.png", "SiIvaGunner Database",
+      "A searchable database of information retrieved from YouTube videos.")
+    ]
+  },
+  "photos": {
+    header: "Aidan's Gallery of Photos",
+    files: [
+      new Image("20170224_192712724.jpg", null, null),
+      new Image("20190406_180351743.jpg", null, null),
+      new Image("20190406_180724273.jpg", null, null),
+      new Image("20190513_162037112.jpg", null, null),
+      new Image("20190514_114607604.jpg", null, null),
+      new Image("20191227_140718813.jpg", null, null),
+      new Image("20200416_085053595.jpg", null, null),
+      new Image("20200704_081445184.jpg", null, null),
+      new Image("20200810_141533258.jpg", null, null),
+      new Image("20200828_172111985.jpg", null, null),
+      new Image("20200905_080326036.jpg", null, null),
+      new Image("20201017_122145598.jpg", null, null),
+      new Image("20201017_122603469.jpg", null, null),
+      new Image("20201022_152635575.jpg", null, null),
+      new Image("20201023_181514948.jpg", null, null),
+      new Image("20201024_123922633.jpg", null, null),
+      new Image("20201030_174537221.jpg", null, null),
+      new Image("20201121_123609294.jpg", null, null),
+      new Image("20201204_140000878.jpg", null, null),
+      new Image("20210129_135657586.jpg", null, null),
+      new Image("20210130_075346801.jpg", null, null),
+      new Image("20210130_075633060.jpg", null, null),
+      new Image("20210130_124630153.jpg", null, null),
+      new Image("20210212_135352723.jpg", null, null),
+      new Image("20210213_074824019.jpg", null, null),
+      new Image("20210403_104505220.jpg", null, null),
+      new Image("20210415_153802017.jpg", null, null),
+      new Image("20210416_180316157.jpg", null, null),
+      new Image("20210430_180546789.jpg", null, null),
+      new Image("20210502_183715090.jpg", null, null),
+      new Image("20210507_153859839.jpg", null, null),
+      new Image("20210508_100346499.jpg", null, null),
+      new Image("20210509_101708955.jpg", null, null),
+      new Image("20210509_104836386.jpg", null, null),
+      new Image("20210515_080717175.jpg", null, null),
+      new Image("20210515_082614599.jpg", null, null),
+      new Image("20210515_083245335.jpg", null, null),
+      new Image("20210515_083248368.jpg", null, null),
+      new Image("20210515_083254767.jpg", null, null),
+      new Image("20210613_160904142.jpg", null, null),
+      new Image("20210701_160209025.jpg", null, null),
+      new Image("20210701_160252889.jpg", null, null)
+    ]
+  },
+  "videos": {
+    header: "Aidan's Set of Videos",
+    files: [
+      new Video("https://www.youtube.com/embed/teBC7NIaN7A", "3", "Three"),
+      new Video("https://www.youtube.com/embed/0YukEii-z64", "9", "Nine")
+    ]
+  },
+  "fun": {
+    header: "Aidan's Box of Fun",
+    files: [
+      new Image("apollo.gif", null, null),
+      new Image("damon.gif", null, null),
+      new Image("ema.gif", null, null),
+      new Image("trucy.gif", null, null)
+    ]
+  }
+};
+
+var backgroundFiles = folders["photos"].files;
+
+// The footer will build a randomized sentence using words from this variable.
 var footerWords = [
   ["I"], // subject nouns
-  ["love", "hate"], // descriptor verbs
+  ["love", "hate"], // descriptive verbs
   ["rapidly", "vigourously"], // adverbs
   ["eating", "drinking"], // action verbs
   ["soup", "water"], // object nouns
   [".", "!"] // punctuation marks
 ];
-var projects = [
-
-];
-var photos = [
-  "IMG_20170224_192712724", "IMG_20190406_180351743_HDR", "IMG_20190406_180724273_HDR",
-  "IMG_20190513_162037112", "IMG_20190514_114607604", "IMG_20191227_140718813",
-  "IMG_20200416_085053595", "IMG_20200704_081445184_HDR", "IMG_20200810_141533258_HDR",
-  "IMG_20200828_172111985", "IMG_20200905_080326036_HDR", "IMG_20201017_122145598",
-  "IMG_20201017_122603469", "IMG_20201022_152635575_HDR", "IMG_20201023_181514948",
-  "IMG_20201024_123922633", "IMG_20201030_174537221_HDR", "IMG_20201121_123609294_HDR",
-  "IMG_20201204_140000878", "IMG_20210129_135657586_HDR", "IMG_20210130_075346801_HDR",
-  "IMG_20210130_075633060", "IMG_20210130_124630153", "IMG_20210212_135352723",
-  "IMG_20210213_074824019_HDR", "IMG_20210403_104505220_HDR", "IMG_20210415_153802017",
-  "IMG_20210416_180316157_HDR", "IMG_20210430_180546789", "IMG_20210502_183715090",
-  "IMG_20210507_153859839", "IMG_20210508_100346499_HDR", "IMG_20210509_101708955_HDR",
-  "IMG_20210509_104836386_HDR", "IMG_20210515_080717175", "IMG_20210515_082614599",
-  "IMG_20210515_083245335_HDR", "IMG_20210515_083248368_HDR", "IMG_20210515_083254767_HDR",
-  "IMG_20210613_160904142", "IMG_20210701_160209025", "IMG_20210701_160252889_HDR"
-];
-var fun = [
-  "apollo",
-  "damon",
-  "ema",
-  "trucy"
-];
-
-var galleryImg;
-var galleryIndex = 0;
-var funImgs;
-var funIndex = 0;
-
-var element;
-var title;
-var description;
 
 
+
+///////////////
+// Functions //
+///////////////
 
 // Called on page load, randomize the page contents
 function onLoad() {
-  galleryImg = document.getElementById("galleryImg");
-  funImgs = document.getElementsByClassName("funImg");
-  randomizeContent();
-  showRandomDiv();
+  randomizeBackgroundContent();
+  randomizeMainContent();
 }
 
-
-
-// Display one of the main divs randomly
-function showRandomDiv() {
-  var divs = document.getElementsByClassName("mainDiv");
-  var divIndex = Math.floor(Math.random() * divs.length);
-  var divId = divs[divIndex].getAttribute("id");
-  showDiv(divId);
-}
-
-
-
-// Called on page load and change, randomize the background color and image
-function randomizeContent() {
+// Called on page load and change, randomize the background color, image, and footer
+function randomizeBackgroundContent() {
   // Randomize the html background image
-  var imgIndex = Math.floor(Math.random() * photos.length);
-  document.documentElement.style.backgroundImage = "url(media/photos/" + photos[imgIndex] + ".jpg)";
+  var fileIndex = Math.floor(Math.random() * backgroundFiles.length);
+  var backgroundFile = backgroundFiles[fileIndex];
+  var backgroundImage = "url(assets/photos/" + backgroundFile.id + ")";
+  document.documentElement.style.backgroundImage = backgroundImage;
 
   // Randomize the body background color and opacity
   var red = Math.floor(Math.random() * 256);
   var green = Math.floor(Math.random() * 256);
   var blue = Math.floor(Math.random() * 256);
   var alpha = Math.random();
-  document.body.style.backgroundColor = "rgba(" + red + "," + green + "," + blue + "," + alpha + ")";
+  var rgba = "rgba(" + red + "," + green + "," + blue + "," + alpha + ")";
+  document.body.style.backgroundColor = rgba;
 
-  // Randomize the footer
+  // Randomize the footer content
   var content = "";
 
   for (var wordsIndex = 0; wordsIndex < footerWords.length; wordsIndex++) {
@@ -95,56 +209,109 @@ function randomizeContent() {
   document.getElementById("footerContent").innerHTML = content;
 }
 
+// Build one of the main content sections randomly
+function randomizeMainContent() {
+  var folderNames = ["projects", "photos", "videos", "fun"];
+  var folderIndex = Math.floor(Math.random() * folderNames.length);
+  var folderName = folderNames[folderIndex];
+  buildMainContent(folderName);
+}
 
+// Build page content from the specified folder
+function buildMainContent(folderName) {
+  currentPath = "assets/" + folderName + "/";
+  currentFolder = folders[folderName];
+  currentFiles = currentFolder.files;
+  randomizeBackgroundContent();
 
-// Display the specified main div, and hide the rest
-function showDiv(divId) {
-  randomizeContent();
-  var divs = document.getElementsByClassName("mainDiv");
+  var header = document.createElement("h2");
+  header.innerHTML = currentFolder.header;
+  var content = document.createElement("div");
 
-  for (var divIndex  = 0; divIndex < divs.length; divIndex++) {
-    var div = divs[divIndex];
+  if (folderName == "fun") {
+    // Build two random img elements
 
-    if (div.getAttribute("id") == divId) {
-
-      if (divId == "photos") {
-        galleryIndex = Math.floor(Math.random() * photos.length);
-        galleryImg.src = "media/photos/" + photos[galleryIndex] + ".jpg";
-      }
-      else if (divId == "fun") {
-        for (funIndex = 0; funIndex < funImgs.length; funIndex++) {
-          var funImg = funImgs[funIndex];
-          funImgsIndex = Math.floor(Math.random() * fun.length);
-          funImg.src = "media/fun/" + fun[funImgsIndex] + ".gif";
-        }
-      }
-
-      div.style.display = "block";
+    for (var count = 1; count <= 2; count++) {
+      var fileIndex = Math.floor(Math.random() * currentFiles.length);
+      var file = currentFiles[fileIndex];
+      content.appendChild(file.toHTML());
     }
-    else {
-      div.style.display = "none";
+  }
+  else {
+    // Build a slide show display
+
+    var slider = document.createElement("div");
+    slider.id = "slider";
+    var prevButton = new Button("Previous", "prev").toHTML();
+    var nextButton = new Button("Next", "next").toHTML();
+    var slideFileDiv = document.createElement("div");
+    slideFileDiv.id = "slideFileDiv";
+    slideIndex = Math.floor(Math.random() * currentFiles.length);
+    var file = currentFiles[slideIndex];
+    slideFile = file.toHTML();
+    slideFile.id = "slide";
+
+    slideFileDiv.appendChild(slideFile);
+    slider.appendChild(prevButton);
+    slider.appendChild(slideFileDiv);
+    slider.appendChild(nextButton);
+    content.appendChild(slider);
+
+    if (file.title) {
+      slideTitle = document.createElement("h3");
+      slideTitle.innerHTML = file.title;
+      content.appendChild(slideTitle);
     }
+
+    if (file.desc) {
+      slideDesc = document.createElement("h4");
+      slideDesc.innerHTML = file.desc;
+      content.appendChild(slideDesc);
+    }
+  }
+
+  content.id = folderName;
+  var main = document.getElementById("mainContent");
+  main.innerHTML = "";
+  main.appendChild(header);
+  main.appendChild(content);
+}
+
+// Change to the slider file at the given index
+function changeSlide(fileIndex) {
+  if (slideFile) {
+    var src = currentFiles[fileIndex].id;
+
+    if (slideFile.nodeName != "IFRAME") {
+      src = currentPath + src;
+    }
+
+    slideFile.src = src;
+  }
+
+  if (slideTitle) {
+    slideTitle.innerHTML = currentFiles[fileIndex].title;
+  }
+
+  if (slideDesc) {
+    slideDesc.innerHTML = currentFiles[fileIndex].desc;
   }
 }
 
-
-
-// Move to next image in gallery
+// Change to the next image in the file folder
 function next() {
-  if (++galleryIndex >= photos.length){
-      galleryIndex = 0;
+  if (++slideIndex >= currentFiles.length){
+      slideIndex = 0;
   }
 
-  galleryImg.src = "media/photos/" + photos[galleryIndex] + ".jpg";
+  changeSlide(slideIndex);
 }
 
-
-
-// Move to previous image in gallery
+// Change to the previous image in the file folder
 function prev() {
-  if (--galleryIndex < 0) {
-      galleryIndex = photos.length - 1;
+  if (--slideIndex < 0) {
+      slideIndex = currentFiles.length - 1;
   }
 
-  galleryImg.src = "media/photos/" + photos[galleryIndex] + ".jpg";
+  changeSlide(slideIndex);
 }

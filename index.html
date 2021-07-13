@@ -1,8 +1,10 @@
 <!doctype html>
 <html>
   <head>
+    <meta charset="utf-8" />
+    <meta name="description" content="Hi. It's me, Aidan." />
     <title>Aidan's Personal Portfolio</title>
-    <link rel="shortcut icon" type="image/png" href="media/favicon.ico"/>
+    <link rel="shortcut icon" type="image/png" href="assets/favicons/favicon.ico"/>
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="script.js"></script>
   </head>
@@ -12,36 +14,14 @@
     </header>
     <nav>
       <ul>
-        <li><button onclick="showDiv('projects')">Projects</button></li>
-        <li><button onclick="showDiv('photos')">Photos</button></li>
-        <li><button onclick="showDiv('videos')">Videos</button></li>
-        <li><button onclick="showDiv('fun')">Fun</button></li>
+        <li><button onclick="buildMainContent('projects')">Projects</button></li>
+        <li><button onclick="buildMainContent('photos')">Photos</button></li>
+        <li><button onclick="buildMainContent('videos')">Videos</button></li>
+        <li><button onclick="buildMainContent('fun')">Fun</button></li>
       </ul>
     </nav>
     <main>
-      <div id="projects" class="mainDiv">
-        <h2>Aidan's Log of Projects</h2>
-        TODO
-      </div>
-      <div id="photos" class="mainDiv">
-        <h2>Aidan's Gallery of Photos</h2>
-        <div class="slideGrid">
-          <button onclick="prev()">Previous</button>
-  				<img id="galleryImg" alt="Image gallery">
-  				<button onclick="next()">Next</button>
-        </div>
-      </div>
-      <div id="videos" class="mainDiv">
-        <h2>Aidan's Set of Videos</h2>
-        TODO
-      </div>
-      <div id="fun" class="mainDiv">
-        <h2>Aidan's Box of Fun</h2>
-        <div id="funGrid">
-          <img class="funImg" alt="Image gallery">
-          <img class="funImg" alt="Image gallery">
-        </div>
-      </div>
+      <div id="mainContent"></div>
     </main>
     <footer>
       <h3 id="footerContent"></h3>
