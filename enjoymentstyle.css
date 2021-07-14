@@ -1,5 +1,6 @@
 
 * {
+  font-family: "Georgia";
   text-align: center;
   text-shadow: 0 0 9px white;
 }
@@ -33,13 +34,18 @@ nav ul li {
   text-align: center;
 }
 
+a {
+  color: black;
+  text-decoration: none;
+}
+
 button {
   font-size: 24px;
   background: none;
   border: none;
 }
 
-button:hover {
+button:hover, a:hover {
   cursor: pointer;
   color: blue;
 }

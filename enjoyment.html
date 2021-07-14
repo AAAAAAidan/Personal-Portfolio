@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="description" content="Hi." />
+    <title>Aidan's Personal Portfolio</title>
+    <link rel="shortcut icon" type="image/png" href="assets/favicons/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="enjoymentstyle.css">
+    <script src="enjoymentscript.js"></script>
+  </head>
+  <body onload="onLoad()">
+    <header>
+      <h1><a href="index.html">Aidan's Personal Portfolio Profile Page</a></h1>
+    </header>
+    <nav>
+      <ul>
+        <li><button onclick="buildMainContent('projects')">Projects</button></li>
+        <li><button onclick="buildMainContent('photos')">Photos</button></li>
+        <li><button onclick="buildMainContent('videos')">Videos</button></li>
+        <li><button onclick="buildMainContent('fun')">Fun</button></li>
+      </ul>
+    </nav>
+    <main>
+      <div id="mainContent"></div>
+    </main>
+    <footer>
+      <h3 id="footerContent"></h3>
+    </footer>
+  </body>
+</html>

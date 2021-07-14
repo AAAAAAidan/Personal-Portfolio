@@ -2,29 +2,77 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="description" content="Hi. It's me, Aidan." />
+    <meta name="description" content="It's me, Aidan." />
     <title>Aidan's Personal Portfolio</title>
     <link rel="shortcut icon" type="image/png" href="assets/favicons/favicon.ico"/>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <script src="script.js"></script>
+    <link rel="stylesheet" type="text/css" href="indexstyle.css">
+    <script src="indexscript.js"></script>
   </head>
-  <body onload="onLoad()">
+  <body>
     <header>
-      <h1><a src="index.html">Aidan's Personal Portfolio Profile Page</a></h1>
+      <div class="column leftColumn">
+        <div id="titleHeader">
+          <h1><a href="enjoyment.html">Aidan Zamboni<img id="logo" src="assets/favicons/faviconoutline.jpg" /></a></h1>
+        </div>
+        <p>I am a full stack developer who enjoys working with databases.</p>
+      </div>
+      <div class="column rightColumn">
+        <p>
+          Tempe, Arizona
+          (623)-698-6662
+          a.k.zamboni@gmail.com
+          <a href="http://www.linkedin.com/in/AidanZamboni" target="_blank">linkedin.com/in/AidanZamboni</a>
+          <a href="https://github.com/AAAAAAidan" target="_blank">github.com/AAAAAAidan</a>
+        </p>
+      </div>
     </header>
     <nav>
-      <ul>
-        <li><button onclick="buildMainContent('projects')">Projects</button></li>
-        <li><button onclick="buildMainContent('photos')">Photos</button></li>
-        <li><button onclick="buildMainContent('videos')">Videos</button></li>
-        <li><button onclick="buildMainContent('fun')">Fun</button></li>
-      </ul>
     </nav>
     <main>
-      <div id="mainContent"></div>
+      <div class="column leftColumn">
+        <h4 class="sectionHeader">EDUCATION</h4 class="sectionHeader">
+        <p><span class="subSectionHeader">Mesa Community College<span class="smallText"> - Mesa, Arizona</span></span>
+          <span class="smallText">Aug. 2017 - Dec. 2020</span>
+          Awarded the Presidents’ Honors Scholarship.
+          Received an associate degree in computer science.
+          Graduated from honors with the highest distinction at a 3.894 GPA.
+        </p>
+        <p><span class="subSectionHeader">Per Scholas<span class="smallText"> - Phoenix, Arizona</span></span>
+          <span class="smallText">May 2021 - Current</span>
+          Completed a 14 week full-time course in full stack Java development.
+          Worked with HTML, CSS, JavaScript, Java, and SQL.
+          Developed a digital library web application to work with the Spring framework and Google Books API.
+        </p>
+        <h4 class="sectionHeader">PROJECTS</h4 class="sectionHeader">
+        <p><span class="subSectionHeader">The SiIvaGunner Database<span class="smallText"> - <a href="https://siivagunnerdatabase.net" target="_blank">siivagunnerdatabase.net</a></span></span>
+          <span class="smallText">Dec. 2019 - Current</span>
+          Developed the web application to run on the Google Cloud platform.
+          Built with HTML, CSS, JavaScript, and Python with the Django framework.
+          Wrote Google Apps scripts to work with the Google Sheets and YouTube APIs.
+        </p>
+        <h4 class="sectionHeader">WORK</h4 class="sectionHeader">
+        <p><span class="subSectionHeader">CaptionCall<span class="smallText"> - Captioning Agent in Scottsdale, Arizona</span></span>
+          <span class="smallText">Jan. 2018 - May 2021</span>
+          Transcribed live telephone calls using speech recognition software.
+          Filled out bug reports on software errors.
+          Awarded National Captioning Agent of the Year of 2020.
+        </p>
+      </div>
+      <div class="column rightColumn">
+        <h4 class="sectionHeader">LANGUAGES</h4 class="sectionHeader">
+        <p>JavaScript, HTML, CSS, Python, Java, C++, SQL, Racket, Prolog, Visual Basic, MATLAB, MIPS, and CLI.
+        </p>
+        <h4 class="sectionHeader">FRAMEWORKS, SERVICES, APIS</h4 class="sectionHeader">
+        <p>Django, Spring, Google Cloud Run, Google Cloud SQL, Google Cloud Functions, Google Apps Script, Google Sheets API, Google Books API, and YouTube API.
+        </p>
+        <h4 class="sectionHeader">ADDITIONAL EXPERIENCE</h4 class="sectionHeader">
+        <p>Following style guides in code and wiki editing.</p>
+        <p>Writing custom user scripts in JavaScript.</p>
+        <p>Working as part of a team in sports and classes.</p>
+        <p>Completing coursework on Codecademy, Sololearn, HackerRank, and Unity.</p>
+      </div>
     </main>
     <footer>
-      <h3 id="footerContent"></h3>
     </footer>
   </body>
 </html>
