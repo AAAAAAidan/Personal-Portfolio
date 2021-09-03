@@ -77,7 +77,7 @@ var slideDesc;
 
 // Since I'm not using any database connection, all files will be retrieved
 // using this object representing a group of folders, with each folder
-// obtaining a content section's header title and files.
+// containing a content section's header title and files.
 var folders = {
   "projects": {
     header: "Aidan's Log of Projects",
@@ -87,7 +87,9 @@ var folders = {
       new Image("sheets.png", "SiIvaGunner Spreadsheets",
       "Sheets documenting YouTube videos maintained through Google Apps Script."),
       new Image("siivagunnerdb.png", "SiIvaGunner Database",
-      "A searchable database of information retrieved from YouTube videos.")
+      "A searchable database of information retrieved from YouTube videos."),
+      new Image("simplelibrary.png", "Simple Library",
+      "A small digital library of books in the public domain.")
     ]
   },
   "photos": {
@@ -141,7 +143,8 @@ var folders = {
     header: "Aidan's Set of Videos",
     files: [
       new Video("https://www.youtube.com/embed/teBC7NIaN7A", "3", "Three"),
-      new Video("https://www.youtube.com/embed/0YukEii-z64", "9", "Nine")
+      new Video("https://www.youtube.com/embed/0YukEii-z64", "9", "Nine"),
+      new Video("https://www.youtube.com/embed/WzOeoYXk8qY", "39", "Thirty-Nine")
     ]
   },
   "fun": {
