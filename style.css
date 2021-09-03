@@ -1,0 +1,16 @@
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  line-height: 100vh;
+  text-align: center;
+}
+
+a:hover {
+  text-shadow: 0 0 39px blue;
+}
