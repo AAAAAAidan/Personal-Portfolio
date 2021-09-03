@@ -187,7 +187,7 @@ function randomizeBackgroundContent() {
   // Randomize the html background image
   var fileIndex = Math.floor(Math.random() * backgroundFiles.length);
   var backgroundFile = backgroundFiles[fileIndex];
-  var backgroundImage = "url(assets/photos/" + backgroundFile.id + ")";
+  var backgroundImage = "url(../assets/photos/" + backgroundFile.id + ")";
   document.documentElement.style.backgroundImage = backgroundImage;
 
   // Randomize the body background color and opacity
@@ -222,7 +222,7 @@ function randomizeMainContent() {
 
 // Build page content from the specified folder
 function buildMainContent(folderName) {
-  currentPath = "assets/" + folderName + "/";
+  currentPath = "../assets/" + folderName + "/";
   currentFolder = folders[folderName];
   currentFiles = currentFolder.files;
   randomizeBackgroundContent();
