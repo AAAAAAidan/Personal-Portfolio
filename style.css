@@ -11,6 +11,10 @@ body {
   text-align: center;
 }
 
+a {
+  font-size: xx-large;
+}
+
 a:hover {
   text-shadow: 0 0 39px blue;
 }
