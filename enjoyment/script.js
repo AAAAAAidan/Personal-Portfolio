@@ -162,12 +162,12 @@ var backgroundFiles = folders["photos"].files;
 
 // The footer will build a randomized sentence using words from this variable.
 var footerWords = [
-  ["I"], // subject nouns
-  ["love", "hate"], // descriptive verbs
-  ["rapidly", "vigourously"], // adverbs
-  ["eating", "drinking"], // action verbs
-  ["soup", "water"], // object nouns
-  [".", "!"] // punctuation marks
+  ["Blithering buffoon", "Uncouth cretin", "Sad sop", "Cheerful child"], // subject descriptor
+  ["Billy", "Bob", "Sandy", "Tim"], // subject
+  ["loves to", "hates to", "continues to", "never stops to"], // action descriptor
+  ["eat lots of", "drink all of the", "kick a lot of", "smell the"], // action
+  ["soup", "water", "rocks", "dirt"], // object
+  [".", "!", "?"] // punctuation
 ];
 
 
