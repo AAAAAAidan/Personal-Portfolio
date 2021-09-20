@@ -1,0 +1,25 @@
+{
+  "name": "personal-portfolio",
+  "version": "1.0.0",
+  "description": "My personal portfolio profile page. The site is comprised of two sides: a web version of my resume and a visual showcase of my work.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AAAAAAidan/Personal-Portfolio.git"
+  },
+  "author": "Aidan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AAAAAAidan/Personal-Portfolio/issues"
+  },
+  "homepage": "https://github.com/AAAAAAidan/Personal-Portfolio#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "lodash": "^4.17.21"
+  }
+}
