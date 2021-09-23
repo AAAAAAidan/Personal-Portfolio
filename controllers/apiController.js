@@ -1,6 +1,5 @@
-const express = require("express");
-const router = express.Router();
 const jsonUtilities = require("../lib/jsonUtilities");
+const cloudUtilities = require("../lib/cloudUtilities");
 const Image = require("../models/image");
 const Video = require("../models/video");
 
