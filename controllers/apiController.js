@@ -25,10 +25,19 @@ const api_image_get_all = (request, response) => {
 }
 
 const api_image_post = (request, response) => {
-  // TODO - Add credentials check
-  // if (request.body.username != username || request.body.password != password) {
-  //   response.status(403).send(jsonUtilities.formatResult());
-  // }
+  cloudUtilities.fetchCredentials()
+  .then(credentials => {
+    console.log("Verifying credentials: " + JSON.stringify(credentials));
+
+    if (request.body.username != credentials.username
+      ||request.body.password != credentials.password) {
+      response.status(403).send(jsonUtilities.formatResult());
+    }
+  })
+  .catch(error => {
+    console.log(error);
+    response.status(500).send(jsonUtilities.formatResult());
+  });
 
   const image = new Image({
     filename: request.body.filename,
@@ -95,10 +104,19 @@ const api_video_get_all = (request, response) => {
 }
 
 const api_video_post = (request, response) => {
-  // TODO - Add credentials check
-  // if (request.body.username != username || request.body.password != password) {
-  //   response.status(403).send(jsonUtilities.formatResult());
-  // }
+  cloudUtilities.fetchCredentials()
+  .then(credentials => {
+    console.log("Verifying credentials: " + JSON.stringify(credentials));
+
+    if (request.body.username != credentials.username
+      ||request.body.password != credentials.password) {
+      response.status(403).send(jsonUtilities.formatResult());
+    }
+  })
+  .catch(error => {
+    console.log(error);
+    response.status(500).send(jsonUtilities.formatResult());
+  });
 
   const video = new Video({
     videoId: request.body.videoId,
