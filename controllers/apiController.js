@@ -27,31 +27,35 @@ const api_image_get_all = (request, response) => {
 const api_image_post = (request, response) => {
   cloudUtilities.fetchCredentials()
   .then(credentials => {
-    console.log("Verifying credentials: " + JSON.stringify(credentials));
+    console.log("Valid credentials: " + JSON.stringify(credentials));
+    console.log("Given credentials: " + JSON.stringify(request.body));
 
     if (request.body.username != credentials.username
       ||request.body.password != credentials.password) {
+      console.log("Invalid credentials! >:(");
       response.status(403).send(jsonUtilities.formatResult());
+    }
+    else {
+      const image = new Image({
+        filename: request.body.filename,
+        title: request.body.title,
+        description: request.body.description
+      });
+
+      image.save()
+      .then((result) => {
+        console.log("Saved new image! :)");
+        response.send(jsonUtilities.formatResult(image));
+      })
+      .catch((error) => {
+        console.log(error);
+        response.status(400).send(jsonUtilities.formatResult());
+      });
     }
   })
   .catch(error => {
     console.log(error);
     response.status(500).send(jsonUtilities.formatResult());
-  });
-
-  const image = new Image({
-    filename: request.body.filename,
-    title: request.body.title,
-    description: request.body.description
-  });
-
-  image.save()
-  .then((result) => {
-    response.send(jsonUtilities.formatResult(image));
-  })
-  .catch((error) => {
-    console.log(error);
-    response.status(400).send(jsonUtilities.formatResult());
   });
 }
 
@@ -106,31 +110,35 @@ const api_video_get_all = (request, response) => {
 const api_video_post = (request, response) => {
   cloudUtilities.fetchCredentials()
   .then(credentials => {
-    console.log("Verifying credentials: " + JSON.stringify(credentials));
+    console.log("Valid credentials: " + JSON.stringify(credentials));
+    console.log("Given credentials: " + JSON.stringify(request.body));
 
     if (request.body.username != credentials.username
       ||request.body.password != credentials.password) {
+      console.log("Invalid credentials! >:(");
       response.status(403).send(jsonUtilities.formatResult());
+    }
+    else {
+      const video = new Video({
+        filename: request.body.filename,
+        title: request.body.title,
+        description: request.body.description
+      });
+
+      video.save()
+      .then((result) => {
+        console.log("Saved new video! :)");
+        response.send(jsonUtilities.formatResult(video));
+      })
+      .catch((error) => {
+        console.log(error);
+        response.status(400).send(jsonUtilities.formatResult());
+      });
     }
   })
   .catch(error => {
     console.log(error);
     response.status(500).send(jsonUtilities.formatResult());
-  });
-
-  const video = new Video({
-    videoId: request.body.videoId,
-    title: request.body.title,
-    description: request.body.description
-  });
-
-  video.save()
-  .then((result) => {
-    response.send(jsonUtilities.formatResult(video));
-  })
-  .catch((error) => {
-    console.log(error);
-    response.status(400).send(jsonUtilities.formatResult());
   });
 }
 

@@ -9,10 +9,8 @@ const homeRoutes = require("./routes/homeRoutes");
 cloudUtilities.fetchCredentials()
 .then(credentials => {
   console.log("Using credentials: " + JSON.stringify(credentials));
-  const username = credentials.username;
-  const password = credentials.password;
-  const connection = credentials.connection;
-  const uri = "mongodb+srv://" + username + ":" + password + "@" + connection + "?retryWrites=true&w=majority";
+  const uri = "mongodb+srv://" + credentials.username + ":" + credentials.password
+            + "@" + credentials.connection + "?retryWrites=true&w=majority";
   console.log("Connecting to " + uri);
 
   mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
