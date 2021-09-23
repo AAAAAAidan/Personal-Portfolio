@@ -1,34 +1,31 @@
-const express = require('express');
+const express = require("express");
+const mongoose = require("mongoose");
+const morgan = require("morgan");
+const apiRoutes = require("./routes/apiRoutes");
+const errorRoutes = require("./routes/homeRoutes");
+const homeRoutes = require("./routes/homeRoutes");
+
+// Currently using credentials with read-only access
+// TODO - Use top secret cloud credentials
+const username = "username";
+const password = "passkey";
+const connection = "personal-portfolio-clus.qedes.mongodb.net/personal-portfolio-db";
+const uri = "mongodb+srv://" + username + ":" + password + "@" + connection + "?retryWrites=true&w=majority";
+
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+.then((result) => { console.log("Connected to database") })
+.catch((error) => { console.log(error) });
+
 const app = express();
 
-app.set('view engine', 'ejs');
-app.use(express.static('public'));
+app.set("view engine", "ejs");
+app.listen(process.env.PORT || 8080);
 
-const port = process.env.PORT || 8080;
-app.listen(port);
+console.log("Listening for requests on port " + process.env.PORT);
 
-// Views
-
-app.get('/', (request, response) => {
-  response.render('index');
-});
-
-app.get('/portfolio', (request, response) => {
-  response.render('portfolio');
-});
-
-app.get('/enjoyment', (request, response) => {
-  response.render('enjoyment');
-});
-
-// Redirects
-
-app.get(['/index', '/home'], (request, response) => {
-  response.redirect('/');
-});
-
-// Errors
-
-app.use((request, response) => {
-  response.status(404).render('404');
-});
+app.use(express.static("public"));
+app.use(express.urlencoded({ extended: true }));
+app.use(morgan("dev"));
+app.use(homeRoutes);
+app.use("/api", apiRoutes);
+app.use((request, response) => { response.status(404).render("404"); });

@@ -1,10 +1,10 @@
 {
   "name": "personal-portfolio",
   "version": "1.0.0",
-  "description": "My personal portfolio profile page. The site is comprised of two sides: a web version of my resume and a visual showcase of my work.",
+  "description": "My personal portfolio profile page.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --forceExit --detectOpenHandles",
     "start": "node app.js"
   },
   "repository": {
@@ -18,8 +18,15 @@
   },
   "homepage": "https://github.com/AAAAAAidan/Personal-Portfolio#readme",
   "dependencies": {
+    "@google-cloud/secret-manager": "^3.10.1",
+    "axios": "^0.21.4",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
-    "lodash": "^4.17.21"
+    "mongoose": "^6.0.7",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "jest": "^27.2.1",
+    "request": "^2.88.2"
   }
 }
