@@ -1,0 +1,31 @@
+{
+  "name": "personal-portfolio",
+  "version": "1.0.0",
+  "description": "My personal portfolio profile page.",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest --forceExit --detectOpenHandles",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AAAAAAidan/Personal-Portfolio.git"
+  },
+  "author": "Aidan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AAAAAAidan/Personal-Portfolio/issues"
+  },
+  "homepage": "https://github.com/AAAAAAidan/Personal-Portfolio#readme",
+  "dependencies": {
+    "@google-cloud/secret-manager": "^3.10.1",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.7",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "jest": "^27.2.1",
+    "request": "^2.88.2"
+  }
+}
