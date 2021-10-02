@@ -1,12 +1,5 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="description" content="Yippee!" />
-    <title>Aidan's Personal Proposition</title>
-    <link rel="shortcut icon" type="image/x-icon" href="images/favicons/favicon.ico" />
-  </head>
-  <body>
+const Add = () => {
+  return (
     <form action="api/files" method="post">
 
       <h1>Account Credentials</h1>
@@ -25,9 +18,11 @@
       <h3>Description</h3>
       <input type="text" name="description" />
 
-      <h1>Submit</h1>
-      <input type="submit" />
+      <h1>Save</h1>
+      <input type="submit" value="Save" />
 
     </form>
-  </body>
-</html>
+  )
+}
+
+export default Add

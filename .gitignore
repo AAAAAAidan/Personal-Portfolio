@@ -1,2 +1,5 @@
 # Ignore node module dependencies
 node_modules
+
+# Ignore Next.js manifest files
+.next
