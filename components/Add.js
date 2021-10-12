@@ -1,4 +1,4 @@
-const Add = () => {
+export default function Add() {
   return (
     <form action="api/files" method="post">
 
@@ -24,5 +24,3 @@ const Add = () => {
     </form>
   )
 }
-
-export default Add

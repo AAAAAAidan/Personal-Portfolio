@@ -1,19 +1,23 @@
-import Head from "next/head"
-import Link from "next/link"
-
-const Home = () => {
+export default function Index() {
   return (
-    <>
-      <Head>
-        <title>Aidan's Personal Portfolio</title>
-        <link rel="shortcut icon" type="image/x-icon" href="images/favicons/favicon.ico"/>
-      </Head>
-      <div>
-        <p>This page will undergo a complete redesign!</p>
-        <Link href="/enjoyment"><a>Get enjoyment</a></Link>
-      </div>
-    </>
+    <div onload="onLoad()">
+      <header>
+        <h1><a href="api">Aidan's Personal Portfolio Profile Page</a></h1>
+      </header>
+      <nav>
+        <ul>
+          <li><button onclick="buildMainContent('projects')">Projects</button></li>
+          <li><button onclick="buildMainContent('photos')">Photos</button></li>
+          <li><button onclick="buildMainContent('videos')">Videos</button></li>
+          <li><button onclick="buildMainContent('fun')">Fun</button></li>
+        </ul>
+      </nav>
+      <main>
+        <div id="mainContent"></div>
+      </main>
+      <footer>
+        <h3 id="footerContent"></h3>
+      </footer>
+    </div>
   )
 }
-
-export default Home

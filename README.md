@@ -7,4 +7,10 @@ My personal portfolio profile page. Hosted on [aidan.contact](https://aidan.cont
 Use the following commands to install the dependencies and start the server. Requires [Node.js](https://nodejs.org/en/download/) and [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
 
     npm install
+    npm run dev
+
+Alternatively, you can use the following to more closely simulate the web deployment process.
+
+    rm -r .next
+    npm run build
     npm start

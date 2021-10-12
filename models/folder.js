@@ -1,24 +1,20 @@
 const mongoose = require("mongoose")
 const Schema = mongoose.Schema
 
-const FileSchema = new Schema({
-  filename: {
-    type: String,
-    required: true
-  },
+const FolderSchema = new Schema({
   title: {
     type: String,
-    required: false
+    required: true
   },
   description: {
     type: String,
     required: false
   },
-  folders: [{
+  files: [{
     type: Schema.Types.ObjectId,
-    ref: "Folder",
+    ref: "File",
     required: false
   }]
 }, { timestamps: true })
 
-export default mongoose.models.File || mongoose.model("File", FileSchema)
+export default mongoose.models.Folder || mongoose.model("Folder", FolderSchema)
