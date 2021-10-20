@@ -7,15 +7,16 @@
 
 html,
 body,
-#__next,
-#pageDiv,
-#contentDiv {
+#__next {
   margin: 0;
   height: 100%;
 }
 
 #pageDiv {
+  min-height: 100%;
   padding: 0 calc((100% - 1024px) / 2);
+  display: flex;
+  flex-flow: column;
   background-position: center;
   background-size: cover;
 }
@@ -23,6 +24,7 @@ body,
 #contentDiv {
   display: flex;
   flex-flow: column;
+  flex-grow: 1;
 }
 
 nav ul {
