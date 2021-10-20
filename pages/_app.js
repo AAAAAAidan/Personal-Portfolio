@@ -5,8 +5,8 @@ export default function PersonalPortfolio({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <title>Aidan's Personal Playground</title>
-        <link rel="shortcut icon" type="image/x-icon" href="images/favicons/favicon.ico"/>
+        <title>Aidan's Personal Portfolio</title>
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <Component {...pageProps} />
     </>

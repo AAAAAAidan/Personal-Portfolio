@@ -1,21 +1,26 @@
 
 * {
-  font-family: "Georgia";
+  font-family: "Georgia", sans-serif;
   text-align: center;
   text-shadow: 0 0 9px white;
 }
 
-html {
-  padding: 0 calc((100% - 1024px)/2);
+html,
+body,
+#__next,
+#pageDiv,
+#contentDiv {
+  margin: 0;
   height: 100%;
+}
+
+#pageDiv {
+  padding: 0 calc((100% - 1024px) / 2);
   background-position: center;
   background-size: cover;
 }
 
-body {
-  margin: 0;
-  height: 100%;
-  width: 1024px;
+#contentDiv {
   display: flex;
   flex-flow: column;
 }
@@ -23,15 +28,12 @@ body {
 nav ul {
   padding: 0;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  align-content: center;
-  align-items: center;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
-nav ul li {
+nav li {
   display: inline;
   list-style-type: none;
-  text-align: center;
 }
 
 a {
@@ -40,40 +42,13 @@ a {
 }
 
 button {
-  font-size: 24px;
+  font-size: x-large;
   background: none;
   border: none;
 }
 
-button:hover, a:hover {
+a:hover,
+button:hover {
   cursor: pointer;
   color: blue;
-}
-
-img, iframe {
-  width: 100%;
-  height: 100%;
-}
-
-iframe {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
-
-#videos #slideFileDiv {
-  position: relative;
-  padding-top: 56.25%;
-}
-
-#slider {
-  display: grid;
-  grid-template-columns: 1fr 4fr 1fr;
-}
-
-#fun {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
 }
