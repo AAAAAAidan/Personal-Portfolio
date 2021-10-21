@@ -1,6 +1,6 @@
-import Gallery from "../components/Gallery.js"
 import { useEffect, useState } from "react"
-import { fetchFolders } from "../lib/fetchUtilities.js"
+import { fetchFolders } from "../lib/fetchUtilities"
+import Gallery from "../components/Gallery"
 
 export default function Index() {
 
