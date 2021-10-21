@@ -1,20 +1,24 @@
-# Use the official lightweight Node.js 12 image.
-# https://hub.docker.com/_/node
-FROM node:12-slim
-
-# Create and change to the app directory.
-WORKDIR /usr/src/app
-
-# Copy application dependency manifests to the container image.
-# A wildcard is used to ensure both package.json AND package-lock.json are copied.
-# Copying this separately prevents re-running npm install on every code change.
+# Install the dependencies.
+FROM node:alpine AS dependencies
+WORKDIR /app
 COPY package*.json ./
-
-# Install production dependencies.
 RUN npm install --only=production
 
-# Copy local code to the container image.
+# Build the manifest files.
+FROM node:alpine AS builder
+WORKDIR /app
 COPY . ./
+COPY --from=dependencies /app/node_modules ./node_modules
+RUN npm run build
 
-# Run the web service on container startup.
-CMD [ "npm", "start" ]
+# Copy the files and run the image.
+FROM node:alpine AS runner
+WORKDIR /app
+ENV NODE_ENV production
+
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package.json ./package.json
+
+CMD ["npm", "start"]

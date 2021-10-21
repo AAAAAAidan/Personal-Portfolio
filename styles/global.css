@@ -1,0 +1,56 @@
+
+* {
+  font-family: "Georgia", sans-serif;
+  text-align: center;
+  text-shadow: 0 0 9px white;
+}
+
+html,
+body,
+#__next {
+  margin: 0;
+  height: 100%;
+}
+
+#pageDiv {
+  min-height: 100%;
+  padding: 0 calc((100% - 1024px) / 2);
+  display: flex;
+  flex-flow: column;
+  background-position: center;
+  background-size: cover;
+}
+
+#contentDiv {
+  display: flex;
+  flex-flow: column;
+  flex-grow: 1;
+}
+
+nav ul {
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+nav li {
+  display: inline;
+  list-style-type: none;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+button {
+  font-size: x-large;
+  background: none;
+  border: none;
+}
+
+a:hover,
+button:hover {
+  cursor: pointer;
+  color: blue;
+}
