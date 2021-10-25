@@ -53,7 +53,7 @@ export default function Index() {
       {!loadingMessage && !errorMessage &&
         <div id="contentDiv" style={{backgroundColor: bgColor}}>
           <header>
-            <h1><a href="api">Aidan's Personal Portfolio Profile Page</a></h1>
+            <h1><a href="/api/files">Aidan's Personal Portfolio Profile Page</a></h1>
           </header>
           <nav>
             <ul>
@@ -65,13 +65,16 @@ export default function Index() {
             </ul>
           </nav>
           <main>
-            <div id="mainContent">
+            <div>
               <h2>{currentFolder.description}</h2>
               <Gallery files={currentFolder.files} />
             </div>
           </main>
           <footer>
-            <h3 id="footerContent">I made this site for fun!</h3>
+            <h3>
+              <p>Content retrieved from <a href="https://aidan.contact/api">aidan.contact/api</a></p>
+              <p>Contact me at <a href = "mailto:a.k.zamboni@gmail.com">a.k.zamboni@gmail.com</a></p>
+            </h3>
           </footer>
         </div>
       }

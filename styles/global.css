@@ -45,6 +45,7 @@ a {
 
 button {
   font-size: x-large;
+  font-weight: bold;
   background: none;
   border: none;
 }
