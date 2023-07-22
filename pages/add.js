@@ -17,8 +17,8 @@ export default function Add() {
       <input type="text" name="description" />
 
       <h1>Save</h1>
-      <input type="submit" value="Save as file" formaction="api/files" />
-      <input type="submit" value="Save as folder" formaction="api/folders" />
+      <p><input type="submit" value="Save as file" formAction="api/files" /></p>
+      <p><input type="submit" value="Save as folder" formAction="api/folders" /></p>
 
     </form>
   )

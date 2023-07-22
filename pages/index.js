@@ -12,35 +12,42 @@ export default function Index() {
   const [currentFolder, setCurrentFolder] = useState(null)
 
   useEffect(() => {
-    if (currentFolder) {
-      // Randomize the background image
-      const randomFileIndex = Math.floor(Math.random() * folders[0].files.length)
-      const photo = folders[0].files[randomFileIndex]
-      const bgUrl = "url(https://storage.googleapis.com/personal-portfolio-media/" + photo.filename + ")"
-      setBgImage(bgUrl)
-
-      // Randomize the background color and opacity
+    const randomizeBackgroundColor = function() {
       const red = Math.floor(Math.random() * 256)
       const green = Math.floor(Math.random() * 256)
       const blue = Math.floor(Math.random() * 256)
       const alpha = Math.random()
       const rgba = "rgba(" + red + "," + green + "," + blue + "," + alpha + ")"
       setBgColor(rgba)
-    } else {
-      // Save all folders from the API
-      fetchFolders()
-      .then(([data, error]) => {
-        if (data) {
-          setFolders(data)
-          const randomFolderIndex = Math.floor(Math.random() * data.length)
-          setCurrentFolder(data[randomFolderIndex])
-        } else {
-          setErrorMessage(error)
-        }
-        setLoadingMessage(null)
-      })
+      console.log(rgba)
     }
-  }, [currentFolder])
+
+    setInterval(randomizeBackgroundColor, 9000)
+    setTimeout(randomizeBackgroundColor, 1000)
+    randomizeBackgroundColor()
+
+    const randomizeBackgroundImage = function(data) {
+      const randomFileIndex = Math.floor(Math.random() * data[0].files.length)
+      const photo = data[0].files[randomFileIndex]
+      const bgUrl = "url(https://storage.googleapis.com/personal-portfolio-media/" + photo.filename + ")"
+      setBgImage(bgUrl)
+      console.log(bgUrl)
+      setTimeout(randomizeBackgroundImage, 12000, data)
+    }
+
+    // Save all folders from the API
+    fetchFolders().then(([data, error]) => {
+      if (data) {
+        const randomFolderIndex = Math.floor(Math.random() * data.length)
+        setCurrentFolder(data[randomFolderIndex])
+        setFolders(data)
+        randomizeBackgroundImage(data)
+      } else {
+        setErrorMessage(error)
+      }
+      setLoadingMessage(null)
+    })
+  }, [])
 
   return (
     <div id="pageDiv" style={{backgroundImage: bgImage}}>
@@ -53,7 +60,7 @@ export default function Index() {
       {!loadingMessage && !errorMessage &&
         <div id="contentDiv" style={{backgroundColor: bgColor}}>
           <header>
-            <h1><a href="/api/files">Aidan's Personal Portfolio Profile Page</a></h1>
+            <h1><a href="/">Aidan's Personal Portfolio Profile Page</a></h1>
           </header>
           <nav>
             <ul>
@@ -72,7 +79,6 @@ export default function Index() {
           </main>
           <footer>
             <h3>
-              <p>Content retrieved from <a href="https://aidan.contact/api">aidan.contact/api</a></p>
               <p>Contact me at <a href = "mailto:a.k.zamboni@gmail.com">a.k.zamboni@gmail.com</a></p>
             </h3>
           </footer>

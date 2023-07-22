@@ -5,9 +5,7 @@
   text-shadow: 0 0 9px white;
 }
 
-html,
-body,
-#__next {
+html, body, #__next {
   margin: 0;
   height: 100%;
 }
@@ -19,12 +17,14 @@ body,
   flex-flow: column;
   background-position: center;
   background-size: cover;
+  transition: background-image 4s;
 }
 
 #contentDiv {
   display: flex;
   flex-flow: column;
   flex-grow: 1;
+  transition: background-color 9s;
 }
 
 nav ul {
@@ -50,8 +50,7 @@ button {
   border: none;
 }
 
-a:hover,
-button:hover {
+a:hover, button:hover {
   cursor: pointer;
   color: blue;
 }
