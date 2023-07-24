@@ -3,13 +3,14 @@ import { fetchFolders } from "../lib/fetchUtilities"
 import Gallery from "../components/Gallery"
 
 export default function Index() {
-
   const [bgColor, setBgColor] = useState("rgba(0,0,0,0)")
   const [bgImage, setBgImage] = useState("none")
   const [loadingMessage, setLoadingMessage] = useState("Loading...")
   const [errorMessage, setErrorMessage] = useState(null)
-  const [folders, setFolders] = useState(null)
+  const [imageFolders, setImageFolders] = useState(null)
+  const [musicFolders, setMusicFolders] = useState(null)
   const [currentFolder, setCurrentFolder] = useState(null)
+  const [preloadedImages, setPreloadedImages] = useState([])
 
   useEffect(() => {
     const randomizeBackgroundColor = function() {
@@ -22,26 +23,59 @@ export default function Index() {
       console.log(rgba)
     }
 
+    // Run the function twice to start the transition effect as soon as the page loads, then run every 9 seconds
     setInterval(randomizeBackgroundColor, 9000)
     setTimeout(randomizeBackgroundColor, 1000)
     randomizeBackgroundColor()
 
-    const randomizeBackgroundImage = function(data) {
+    const setBackgroundImage = function(backgroundImageUrl, data) {
+      setBgImage(backgroundImageUrl)
+      console.log(backgroundImageUrl)
+      setTimeout(randomizeBackgroundImage, 9000, data)
+    }
+
+    const randomizeBackgroundImage = async function(data) {
       const randomFileIndex = Math.floor(Math.random() * data[0].files.length)
-      const photo = data[0].files[randomFileIndex]
-      const bgUrl = "url(https://storage.googleapis.com/personal-portfolio-media/" + photo.filename + ")"
-      setBgImage(bgUrl)
-      console.log(bgUrl)
-      setTimeout(randomizeBackgroundImage, 12000, data)
+      const image = data[0].files[randomFileIndex]
+      const imageUrl = "https://storage.googleapis.com/personal-portfolio-media/" + image.filename
+      const backgroundImageUrl = "url(" + imageUrl + ")"
+
+      // If the background image has already been set, then preload the next image to prevent flickering
+      if (bgImage && !preloadedImages.includes(backgroundImageUrl) && document.getElementById("hiddenDiv")) {
+        const newImage = document.createElement("img")
+        newImage.src = imageUrl
+        newImage.onload = function() { setBackgroundImage(backgroundImageUrl, data) }
+        document.getElementById("hiddenDiv").appendChild(newImage)
+      } else {
+        setBackgroundImage(backgroundImageUrl, data)
+      }
     }
 
     // Save all folders from the API
     fetchFolders().then(([data, error]) => {
       if (data) {
-        const randomFolderIndex = Math.floor(Math.random() * data.length)
-        setCurrentFolder(data[randomFolderIndex])
-        setFolders(data)
-        randomizeBackgroundImage(data)
+        const imageData = []
+        const musicData = []
+
+        data.forEach(folder => {
+          // Skip empty folders
+          if (folder.files.length === 0) {
+            return
+          }
+
+          // Separate music from images/videos
+          if (folder.files[0].filename.endsWith(".mp3")) {
+            musicData.push(folder)
+          } else {
+            imageData.push(folder)
+          }
+        });
+
+        const randomFolderIndex = Math.floor(Math.random() * imageData.length)
+        setCurrentFolder(imageData[randomFolderIndex])
+        setImageFolders(imageData)
+        setMusicFolders(musicData)
+        randomizeBackgroundImage(imageData)
       } else {
         setErrorMessage(error)
       }
@@ -64,7 +98,7 @@ export default function Index() {
           </header>
           <nav>
             <ul>
-              {folders && folders.map((folder) => (
+              {imageFolders && imageFolders.map((folder) => (
                 <li key={folder.title}>
                   <button onClick={() => setCurrentFolder(folder)}>{folder.title}</button>
                 </li>
@@ -76,10 +110,12 @@ export default function Index() {
               <h2>{currentFolder.description}</h2>
               <Gallery files={currentFolder.files} />
             </div>
+            <div id="hiddenDiv" className="hidden">
+            </div>
           </main>
           <footer>
             <h3>
-              <p>Contact me at <a href = "mailto:a.k.zamboni@gmail.com">a.k.zamboni@gmail.com</a></p>
+              <p><a href = "mailto:a.k.zamboni@gmail.com">a.k.zamboni@gmail.com</a></p>
             </h3>
           </footer>
         </div>

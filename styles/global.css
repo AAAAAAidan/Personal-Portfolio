@@ -10,23 +10,6 @@ html, body, #__next {
   height: 100%;
 }
 
-#pageDiv {
-  min-height: 100%;
-  padding: 0 calc((100% - 1024px) / 2);
-  display: flex;
-  flex-flow: column;
-  background-position: center;
-  background-size: cover;
-  transition: background-image 4s;
-}
-
-#contentDiv {
-  display: flex;
-  flex-flow: column;
-  flex-grow: 1;
-  transition: background-color 9s;
-}
-
 nav ul {
   padding: 0;
   display: grid;
@@ -35,6 +18,9 @@ nav ul {
 
 nav li {
   display: inline;
+}
+
+li {
   list-style-type: none;
 }
 
@@ -53,4 +39,25 @@ button {
 a:hover, button:hover {
   cursor: pointer;
   color: blue;
+}
+
+#pageDiv {
+  min-height: 100%;
+  padding: 0 calc((100% - 1024px) / 2);
+  display: flex;
+  flex-flow: column;
+  background-position: center;
+  background-size: cover;
+  transition: background-image 4s;
+}
+
+#contentDiv {
+  display: flex;
+  flex-flow: column;
+  flex-grow: 1;
+  transition: background-color 9s;
+}
+
+.hidden {
+  display: none;
 }

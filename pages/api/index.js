@@ -11,7 +11,7 @@ export default async function handler(req, res) {
         }
         res.status(200).json(formatResult(links))
       } catch (e) {
-        console.log(e)
+        console.error(e.stack)
       }
       break
   }
