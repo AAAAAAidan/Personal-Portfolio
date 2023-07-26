@@ -1,6 +1,6 @@
 {
   "name": "personal-portfolio",
-  "version": "0.2.2",
+  "version": "0.39",
   "description": "My personal portfolio profile page.",
   "scripts": {
     "dev": "next dev",

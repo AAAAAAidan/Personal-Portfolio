@@ -1,4 +1,5 @@
 import { getApiForm, getStaticApiPaths, getStaticApiProps } from "../../lib/apiUtilities"
+import File from "../../models/File"
 
 export default function UpdateFile({ file }) {
   const action = "/api/files/" + file._id
@@ -12,7 +13,7 @@ export default function UpdateFile({ file }) {
 }
 
 export async function getStaticPaths() {
-  const paths = await getStaticApiPaths("/api/files")
+  const paths = await getStaticApiPaths(File)
   return {
     paths,
     fallback: false
@@ -20,7 +21,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const file = await getStaticApiProps("/api/files/" + params.id)
+  const file = await getStaticApiProps(File, params.id)
   return {
     props: {
       file

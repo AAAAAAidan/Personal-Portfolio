@@ -1,4 +1,5 @@
 import { getApiForm, getStaticApiPaths, getStaticApiProps } from "../../lib/apiUtilities"
+import Folder from "../../models/Folder"
 
 export default function UpdateFolder({ folder }) {
   const action = "/api/folders/" + folder._id
@@ -12,7 +13,7 @@ export default function UpdateFolder({ folder }) {
 }
 
 export async function getStaticPaths() {
-  const paths = await getStaticApiPaths("/api/folders")
+  const paths = await getStaticApiPaths(Folder)
   return {
     paths,
     fallback: false
@@ -20,7 +21,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const folder = await getStaticApiProps("/api/folders/" + params.id)
+  const folder = await getStaticApiProps(Folder, params.id)
   return {
     props: {
       folder
