@@ -1,6 +1,6 @@
 {
   "name": "personal-portfolio",
-  "version": "0.2.2",
+  "version": "0.39",
   "description": "My personal portfolio profile page.",
   "scripts": {
     "dev": "next dev",
@@ -20,7 +20,7 @@
   "homepage": "https://github.com/AAAAAAidan/Personal-Portfolio#readme",
   "dependencies": {
     "mongoose": "^6.11.3",
-    "next": "^12.1.0",
+    "next": "^12.3.4",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
