@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
 import { fetchFolders } from "../lib/fetchUtilities"
 import Gallery from "../components/Gallery"
+import MusicPlayer from "../components/MusicPlayer"
+import TextRandomizer from "../components/TextRandomizer"
 
 export default function Index() {
   const [bgColor, setBgColor] = useState("rgba(0,0,0,0)")
@@ -8,8 +10,8 @@ export default function Index() {
   const [loadingMessage, setLoadingMessage] = useState("Loading...")
   const [errorMessage, setErrorMessage] = useState(null)
   const [imageFolders, setImageFolders] = useState(null)
-  const [musicFolders, setMusicFolders] = useState(null)
   const [currentFolder, setCurrentFolder] = useState(null)
+  const [musicFolders, setMusicFolders] = useState(null)
   const [preloadedImages, setPreloadedImages] = useState([])
 
   useEffect(() => {
@@ -97,6 +99,7 @@ export default function Index() {
             <h1><a href="/">Aidan's Personal Portfolio Profile Page</a></h1>
           </header>
           <nav>
+            <hr />
             <ul>
               {imageFolders && imageFolders.map((folder) => (
                 <li key={folder.title}>
@@ -104,6 +107,7 @@ export default function Index() {
                 </li>
               ))}
             </ul>
+            <hr />
           </nav>
           <main>
             <div>
@@ -114,9 +118,14 @@ export default function Index() {
             </div>
           </main>
           <footer>
+            <hr />
             <h3>
-              <p><a href = "mailto:a.k.zamboni@gmail.com">a.k.zamboni@gmail.com</a></p>
+              <TextRandomizer />
             </h3>
+            <hr />
+            <div>
+              <MusicPlayer folders={musicFolders} />
+            </div>
           </footer>
         </div>
       }
