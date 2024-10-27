@@ -33,8 +33,10 @@ export default function Index() {
   }
 
   const randomizeBackgroundImage = async function(data) {
-    const randomFileIndex = randomIndex(data[0].files)
-    const image = data[0].files[randomFileIndex]
+    // Find a random image in the photos folder
+    const photosFolderIndex = data.findIndex(folder => folder.title = "Photos")
+    const randomFileIndex = randomIndex(data[photosFolderIndex].files)
+    const image = data[photosFolderIndex].files[randomFileIndex]
     const imageUrl = storageUrl + image.filename
     const backgroundImageUrl = "url(" + imageUrl + ")"
 
@@ -49,6 +51,7 @@ export default function Index() {
     }
   }
 
+  // Switch from normal mix to high quality mix or vice versa
   const swapMusicMix = function() {
     setCurrentMusicFolder(oldFolder => {
       if (oldFolder.title === "Nice Quality Mix") {
