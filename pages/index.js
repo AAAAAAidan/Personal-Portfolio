@@ -105,7 +105,7 @@ export default function Index() {
   return (
     <div id="pageDiv" style={{backgroundImage: bgImage}}>
       {loadingMessage &&
-        <h1>{loadingMessage}</h1>
+        <h1>{loadingMessage}<img src="/cat.gif" alt="A cat swaying its head" /></h1>
       }
       {errorMessage &&
         <h1>{errorMessage}</h1>
