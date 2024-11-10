@@ -34,7 +34,7 @@ export default function Index() {
 
   const randomizeBackgroundImage = async function(data) {
     // Find a random image in the photos folder
-    const photosFolderIndex = data.findIndex(folder => folder.title = "Photos")
+    const photosFolderIndex = data.findIndex(folder => folder.title === "Photos")
     const randomFileIndex = randomIndex(data[photosFolderIndex].files)
     const image = data[photosFolderIndex].files[randomFileIndex]
     const imageUrl = storageUrl + image.filename
